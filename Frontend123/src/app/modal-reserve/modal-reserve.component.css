@@ -1,0 +1,10 @@
+.time-form-label {
+	line-height: 100px;
+	vertical-align: middle;
+}
+
+#reservePhonePrefix {
+	position: absolute;
+	left: -15px;
+	top: 5px;
+}

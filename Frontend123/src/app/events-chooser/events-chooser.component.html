@@ -1,0 +1,9 @@
+<h4 class="events-chooser__title">Календарь событий</h4>
+<div class="container-fluid posters">
+	<div class="row">
+		<div *ngFor="let c of listEvents" class="event-tile col-md-3">
+			<div class="event-name">{{c.CurrentDate}}</div>
+			<img [src]="'http://localhost:64064/' + c.Link" />
+		</div>
+	</div>
+</div>

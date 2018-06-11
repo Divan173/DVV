@@ -1,0 +1,40 @@
+@import './mushu-map.css';
+@import './mama-pizza.css';
+@import './halva.css';
+
+.choose-table {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+#mushu-map {
+	width: 1000px!important;
+	height: 630px!important;
+	position: relative;
+}
+
+#halva-map,
+#mama-pizza-map {
+	width: 760px!important;
+	height: 630px!important;
+	position: relative;
+}
+
+.table-item {
+	background-color: #e48085;
+	cursor: pointer;
+	color: #2e1b8e;
+}
+
+.table-item:hover {
+	outline: 4px solid #2e1b8e;
+}
+
+.table-item--is-closed {
+	background-color: #ddd!important;
+	cursor: not-allowed;
+}
+
+.table-item--is-selected {
+	background-color: #309a7c!important;
+}

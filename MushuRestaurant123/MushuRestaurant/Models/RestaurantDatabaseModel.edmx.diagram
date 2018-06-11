@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c47b01c8ab547b990bd8559339915af" Name="Diagram1">
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.CatalogTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.GeneralValue" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.Jn" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.RequestCall" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.CatalogTablesView" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.JnView" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.CatalogHall" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="RestaurantDatabaseModel.CalendarEvent" Width="1.5" PointX="7.375" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

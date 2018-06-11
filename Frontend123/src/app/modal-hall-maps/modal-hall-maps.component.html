@@ -1,0 +1,30 @@
+<ng-template #content let-c="close" let-d="dismiss" >
+	<div id="HallMapChooser">
+		<div class="modal-header">
+			<h4 class="modal-title">Выберите стол</h4>
+			<button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div id="mushu-map" appTableChooser (onChooseTable)="onSelect($event)" *ngIf="hallCode === 'mushu'">
+				<h5 class="map-title">Схема зала "Мушу"</h5>
+				<div *ngFor="let c of tablesArr" [id]="'table' + c.Number" class="table-item" [ngClass]="{ 'table-item--is-closed' : c.IsClose, 'table-item--is-selected' : c.IsSelected }">{{c.Number}}<span *ngIf="c.VIP">(VIP)</span></div>
+			</div>
+			<div id="mama-pizza-map" appTableChooser (onChooseTable)="onSelect($event)" *ngIf="hallCode === 'mama-pizza'">
+				<h5 class="map-title">Схема зала "Мама-Пицца"</h5>
+				<div *ngFor="let c of tablesArr" [id]="'pizzatable' + c.Number" class="table-item" [ngClass]="{ 'table-item--is-closed' : c.IsClose, 'table-item--is-selected' : c.IsSelected }">{{c.Number}}<span *ngIf="c.VIP">(VIP)</span></div>
+			</div>
+
+			<div id="halva-map" appTableChooser (onChooseTable)="onSelect($event)" *ngIf="hallCode === 'halva'">
+				<h5 class="map-title">Схема зала "Халва"</h5>
+				<div *ngFor="let c of tablesArr" [id]="'halvatable' + c.Number" class="table-item" [ngClass]="{ 'table-item--is-closed' : c.IsClose, 'table-item--is-selected' : c.IsSelected }">{{c.Number}}<span *ngIf="c.VIP">(VIP)</span></div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-outline-dark" (click)="d(true)">Принять</button>
+		</div>
+	</div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary choose-table" (click)="open(content)">{{btnText}}</button>

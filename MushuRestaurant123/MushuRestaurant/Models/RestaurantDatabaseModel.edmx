@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище RestaurantDatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalendarEvents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrentDate" Type="datetime" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="800" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CatalogHalls">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="CatalogTables">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HallId" Type="int" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="VIP" Type="bit" />
+        </EntityType>
+        <EntityType Name="GeneralValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DataType" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="SumPrepayment" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SumToPay" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="IsCancel" Type="bit" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="800" />
+        </EntityType>
+        <EntityType Name="RequestCalls">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="СlientName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ClientPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="FromTimeCall" Type="datetime" />
+          <Property Name="ToTimeCall" Type="datetime" />
+          <Property Name="IsCompleted" Type="bit" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "F:\PROJECT\MUSHURESTAURANT\MUSHURESTAURANT\APP_DATA\RESTAURANTDATABASE.MDF.dbo.CatalogTablesView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="CatalogTablesView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="HallName" />
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="HallId" Type="int" />
+          <Property Name="HallName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="VIP" Type="bit" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "F:\PROJECT\MUSHURESTAURANT\MUSHURESTAURANT\APP_DATA\RESTAURANTDATABASE.MDF.dbo.JnView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="JnView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Created" />
+            <PropertyRef Name="TableId" />
+            <PropertyRef Name="HallName" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="FromDate" />
+            <PropertyRef Name="ToDate" />
+            <PropertyRef Name="ClientName" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="SumToPay" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="HallName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="TableNumber" Type="int" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="SumPrepayment" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SumToPay" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="IsCancel" Type="bit" />
+          <Property Name="Comment" Type="varchar" MaxLength="800" />
+        </EntityType>
+        <Function Name="GetCatalogTablesByClose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hallId" Type="int" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetCloseTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="tableId" Type="int" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetCloseTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hallId" Type="int" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+          <Parameter Name="tableId" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="tableId" Type="int" />
+                <Property Name="isClose" Type="bit" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="Хранилище RestaurantDatabaseModelContainer">
+          <EntitySet Name="CalendarEvents" EntityType="Self.CalendarEvents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogHalls" EntityType="Self.CatalogHalls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogTables" EntityType="Self.CatalogTables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GeneralValues" EntityType="Self.GeneralValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jn" EntityType="Self.Jn" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestCalls" EntityType="Self.RequestCalls" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CatalogTablesView" EntityType="Self.CatalogTablesView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CatalogTablesView].[Id] AS [Id], 
+    [CatalogTablesView].[HallId] AS [HallId], 
+    [CatalogTablesView].[HallName] AS [HallName], 
+    [CatalogTablesView].[Number] AS [Number], 
+    [CatalogTablesView].[VIP] AS [VIP]
+    FROM [dbo].[CatalogTablesView] AS [CatalogTablesView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="JnView" EntityType="Self.JnView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [JnView].[Id] AS [Id], 
+    [JnView].[Created] AS [Created], 
+    [JnView].[TableId] AS [TableId], 
+    [JnView].[HallName] AS [HallName], 
+    [JnView].[TableNumber] AS [TableNumber], 
+    [JnView].[FromDate] AS [FromDate], 
+    [JnView].[ToDate] AS [ToDate], 
+    [JnView].[ClientName] AS [ClientName], 
+    [JnView].[ClientPhone] AS [ClientPhone], 
+    [JnView].[SumPrepayment] AS [SumPrepayment], 
+    [JnView].[SumToPay] AS [SumToPay], 
+    [JnView].[IsPaid] AS [IsPaid], 
+    [JnView].[IsCancel] AS [IsCancel], 
+    [JnView].[Comment] AS [Comment]
+    FROM [dbo].[JnView] AS [JnView]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RestaurantDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CatalogTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="VIP" Type="Boolean" />
+          <Property Name="HallId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GeneralValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jn">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SumPrepayment" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SumToPay" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="IsCancel" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="800" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RequestCall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="СlientName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FromTimeCall" Type="DateTime" Precision="3" />
+          <Property Name="ToTimeCall" Type="DateTime" Precision="3" />
+          <Property Name="IsCompleted" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="RestaurantDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CatalogTables" EntityType="Self.CatalogTable" />
+          <EntitySet Name="GeneralValues" EntityType="Self.GeneralValue" />
+          <EntitySet Name="Jns" EntityType="Self.Jn" />
+          <EntitySet Name="RequestCalls" EntityType="Self.RequestCall" />
+          <EntitySet Name="CatalogTablesViews" EntityType="RestaurantDatabaseModel.CatalogTablesView" />
+          <EntitySet Name="JnViews" EntityType="RestaurantDatabaseModel.JnView" />
+          <EntitySet Name="CatalogHalls" EntityType="RestaurantDatabaseModel.CatalogHall" />
+          <FunctionImport Name="GetCatalogTablesByClose" ReturnType="Collection(RestaurantDatabaseModel.GetCatalogTablesByClose_Result)">
+            <Parameter Name="hallId" Mode="In" Type="Int32" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="GetCloseTables" IsComposable="true" ReturnType="Collection(RestaurantDatabaseModel.GetCloseTables_Result)">
+            <Parameter Name="hallId" Mode="In" Type="Int32" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+            <Parameter Name="tableId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="CalendarEvents" EntityType="RestaurantDatabaseModel.CalendarEvent" />
+        </EntityContainer>
+        <EntityType Name="CatalogTablesView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="HallName" />
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="HallId" Type="Int32" />
+          <Property Name="HallName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="VIP" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="JnView">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Created" />
+            <PropertyRef Name="TableId" />
+            <PropertyRef Name="HallName" />
+            <PropertyRef Name="TableNumber" />
+            <PropertyRef Name="FromDate" />
+            <PropertyRef Name="ToDate" />
+            <PropertyRef Name="ClientName" />
+            <PropertyRef Name="ClientPhone" />
+            <PropertyRef Name="SumToPay" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="HallName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TableNumber" Type="Int32" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ClientName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SumPrepayment" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SumToPay" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="IsCancel" Type="Boolean" />
+          <Property Name="Comment" Type="String" MaxLength="800" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CatalogHall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetCatalogTablesByClose_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="HallId" Nullable="true" />
+          <Property Type="Int32" Name="Number" Nullable="false" />
+          <Property Type="Boolean" Name="VIP" Nullable="true" />
+          <Property Type="Boolean" Name="IsClose" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetCloseTables_Result">
+          <Property Type="Int32" Name="tableId" Nullable="true" />
+          <Property Type="Boolean" Name="isClose" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="CalendarEvent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="800" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RestaurantDatabaseModelContainer" CdmEntityContainer="RestaurantDatabaseEntities">
+          <EntitySetMapping Name="CatalogTables">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.CatalogTable">
+              <MappingFragment StoreEntitySet="CatalogTables">
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="VIP" ColumnName="VIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GeneralValues">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.GeneralValue">
+              <MappingFragment StoreEntitySet="GeneralValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jns">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.Jn">
+              <MappingFragment StoreEntitySet="Jn">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="SumPrepayment" ColumnName="SumPrepayment" />
+                <ScalarProperty Name="SumToPay" ColumnName="SumToPay" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestCalls">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.RequestCall">
+              <MappingFragment StoreEntitySet="RequestCalls">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="СlientName" ColumnName="СlientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="FromTimeCall" ColumnName="FromTimeCall" />
+                <ScalarProperty Name="ToTimeCall" ColumnName="ToTimeCall" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogTablesViews">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.CatalogTablesView">
+              <MappingFragment StoreEntitySet="CatalogTablesView">
+                <ScalarProperty Name="VIP" ColumnName="VIP" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="HallName" ColumnName="HallName" />
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JnViews">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.JnView">
+              <MappingFragment StoreEntitySet="JnView">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="SumToPay" ColumnName="SumToPay" />
+                <ScalarProperty Name="SumPrepayment" ColumnName="SumPrepayment" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="TableNumber" ColumnName="TableNumber" />
+                <ScalarProperty Name="HallName" ColumnName="HallName" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CatalogHalls">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.CatalogHall">
+              <MappingFragment StoreEntitySet="CatalogHalls">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCatalogTablesByClose" FunctionName="Хранилище RestaurantDatabaseModel.GetCatalogTablesByClose">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RestaurantDatabaseModel.GetCatalogTablesByClose_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="VIP" ColumnName="VIP" />
+                <ScalarProperty Name="IsClose" ColumnName="IsClose" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCloseTables" FunctionName="Хранилище RestaurantDatabaseModel.GetCloseTables">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RestaurantDatabaseModel.GetCloseTables_Result">
+                <ScalarProperty Name="tableId" ColumnName="tableId" />
+                <ScalarProperty Name="isClose" ColumnName="isClose" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="CalendarEvents">
+            <EntityTypeMapping TypeName="RestaurantDatabaseModel.CalendarEvent">
+              <MappingFragment StoreEntitySet="CalendarEvents">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="CurrentDate" ColumnName="CurrentDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

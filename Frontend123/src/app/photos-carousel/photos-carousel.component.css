@@ -1,0 +1,10 @@
+.slide-block {
+	display: flex!important;
+	justify-content: center!important;
+	flex-direction: row!important;
+}
+
+.carousel.slide {
+	outline: none;
+}
+

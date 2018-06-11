@@ -1,0 +1,7 @@
+.input-group {
+	flex: 1;
+}
+
+.form-inline .form-group {
+	flex: 1!important;
+}

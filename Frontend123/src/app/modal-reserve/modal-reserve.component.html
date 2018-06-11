@@ -1,0 +1,58 @@
+<ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title">Бронирование столов</h4>
+		<button type="button" class="close" aria-label="Close" (click)="c('Cross click')">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="form-group row">
+			<label for="reserveDate" class="col-sm-4 col-form-label">День брони:</label>
+			<div class="col-sm-8">
+				<app-datepicker-popup (onSelectDay)="selectDay($event)"></app-datepicker-popup>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="reserveDate" class="col-sm-4 col-form-label time-form-label">Время брони:</label>
+			<div class="col-sm-8">
+				<app-timepicker-reserve (onSelectTime)="selectTime($event)"></app-timepicker-reserve>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="reserveDate" class="col-sm-4 col-form-label">Длительность:</label>
+			<div class="col-sm-8">
+				<input type="number" id="reserveDate" name="reserveDate" class="form-control" min="0" step="1" max="24" [(ngModel)]="duration"
+				(change)="durationUpdate($event)">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="hall" class="col-sm-4 col-form-label">Зал:</label>
+			<div class="col-sm-8">
+				<select class="custom-select mr-sm-2" id="hall" [(ngModel)]="selectedHall" (change)="hallUpdate($event);hall.clearSelection()">
+					<option disabled="true" value="-1">Выберите...</option>
+					<option *ngFor="let c of halls" [ngValue]="c.Id">{{c.Name}}</option>
+				</select>
+			</div>
+		</div>
+		<app-modal-hall-maps #hall [hallCode]="selectedHallCode" [tablesArr]="tablesOfHall" [previousSelection]="memTable" (onSelectTable)="tableUpdate($event)" ></app-modal-hall-maps>
+		<div class="form-group row">
+			<label for="reserveName" class="col-sm-4 col-form-label">Ваше имя:</label>
+			<div class="col-sm-8">
+				<input type="text" id="reserveName" name="reserveName" class="form-control" maxlength="50" [(ngModel)]="clientName">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="reservePhone" class="col-sm-4 col-form-label">Ваш телефон:</label>
+			<div class="col-sm-8">
+				<span id="reservePhonePrefix">+7</span>
+				<input type="text" [textMask]="{mask: phoneNumberMask}" id="reservePhone" name="reservePhone" class="form-control" maxlength="50" [(ngModel)]="clientPhone">
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-dark" (click)="d(true)">Забронировать</button>
+	</div>
+</ng-template>
+
+<!-- Кнопка которая вызывает модальное окное для бронирования столов, c помощью метода open, определенного в компоненте -->
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Забронировать столик</button>
